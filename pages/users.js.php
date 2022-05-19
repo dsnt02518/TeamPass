@@ -2204,8 +2204,12 @@ if (checkUser($_SESSION['user_id'], $_SESSION['key'], 'folders', $SETTINGS) === 
                                 }
                             );
                         } else {
-                            console.log('Generation des clés terminée')
+                            console.log('Generation des clés terminée');
                             // Finalizing
+                            // Modal may still be transitioning - set it to hide immediately when shown:
+                            $("#warningModal").on('shown.bs.modal', function (e) {
+                                $("#warningModal").modal('hide')
+                            })
                             $('#warningModal').modal('hide');
                             
                             // refresh the list of users in LDAP not added in Teampass
